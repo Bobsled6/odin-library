@@ -1,3 +1,6 @@
+const button = document.getElementById(newBookButton);
+const dialog = document.querySelector("dialog");
+
 const myLibrary = [];
 
 function Book(author, title, pages, read) {
@@ -16,9 +19,17 @@ function Book(author, title, pages, read) {
 
 function addBookToLibrary(author, title, pages, read) { 
     let libraryBook = new Book(author, title, pages, read);
-    console.log(libraryBook);
+    myLibrary.push(libraryBook) ;
 
 }
 
 addBookToLibrary('J.R.R. Tolkien', 'The Hobbit', '245', 'not read');
+addBookToLibrary('J.K. Rowling', 'Harry Potter', '256', 'read');
+
+console.log(myLibrary);
+
+
+newBookButton.addEventListener("click", () => {
+    dialog.showModal();
+});
 
