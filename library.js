@@ -29,7 +29,35 @@ function Book() {
 function addBookToLibrary(){
     let libraryBook = new Book();
     myLibrary.push(libraryBook);
+    for (let i = 0; i < myLibrary.length; i++)
+{
+    document
+    .getElementById("tableDiv")
+    .innerHTML = genTable(myLibrary);
+};
     console.log(myLibrary);
+};
+
+function genTable(myLibrary) {
+    let bookTable = `
+        <table>
+            <tr>
+                <th> Title </th>
+                <th> Author </th>
+                <th> Pages </th>
+                <th> Read? </th>
+            </tr>`;
+    for (const book of myLibrary) {
+        bookTable += `
+            <tr>
+                <td> ${book.title} </td>
+                <td> ${book.author} </td>
+                <td> ${book.pages} </td>
+                <td> ${book.read} </td>
+            </tr> `;
+    }
+    bookTable += "</table>";
+    return bookTable;
 };
 
 
@@ -43,7 +71,6 @@ form.addEventListener("submit", (event) => {
     dialog.close();
     bookForm.reset();
 });
-    
 
 
 
