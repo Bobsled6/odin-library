@@ -2,6 +2,11 @@ const button = document.getElementById(newBookButton);
 const dialog = document.querySelector("dialog");
 const bookForm = document.getElementById("form");
 const myLibrary = [];
+const authorHeader = document.getElementById("authorHeader");
+const pagesHeader = document.getElementById("pagesHeader");
+const readHeader = document.getElementById("readHeader");
+const bookTable = document.querySelector("table");
+
 
 
 
@@ -34,18 +39,40 @@ function addBookToLibrary(){
     document
     .getElementById("tableDiv")
     .innerHTML = genTable(myLibrary);
+     const titleHeader = document.getElementById("titleHeader");
+     titleHeader.addEventListener("click", () => {
+        myLibrary.sort((a, b) => {
+        const titleA = a.title.toUpperCase(); 
+        const titleB = b.title.toUpperCase(); 
+        if (titleA < titleB) {
+        return -1;
+    }
+        if (titleA > titleB) {
+        return 1;
+  }
+        return 0;
+});
+     document
+    .getElementById("tableDiv")
+    .innerHTML = genTable(myLibrary);
+});
 };
+const titleHeader = document.getElementById("titleHeader");
+    titleHeader.addEventListener("click", () => {
+    myLibrary.sort();
+    genTable(myLibrary);
+})
     console.log(myLibrary);
 };
 
 function genTable(myLibrary) {
     let bookTable = `
-        <table>
+        <table class = "bookTable">
             <tr>
-                <th> Title </th>
-                <th> Author </th>
-                <th> Pages </th>
-                <th> Read? </th>
+                <th id = "titleHeader"> Title </th>
+                <th id = "authorHeader" > Author </th>
+                <th id = "pagesHeader"> Pages </th>
+                <th id = "readHeader"> Read? </th>
             </tr>`;
     for (const book of myLibrary) {
         bookTable += `
@@ -71,9 +98,6 @@ form.addEventListener("submit", (event) => {
     dialog.close();
     bookForm.reset();
 });
-
-
-
 
 
 

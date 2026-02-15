@@ -7,3 +7,15 @@ form {
     display: grid;
     gap: 5px;
 }
+
+table {
+    
+}
+
+th {
+    width: 80px;
+}
+
+td {
+    text-align: center;
+}
