@@ -5,7 +5,8 @@ const myLibrary = [];
 const authorHeader = document.getElementById("authorHeader");
 const pagesHeader = document.getElementById("pagesHeader");
 const readHeader = document.getElementById("readHeader");
-const bookTable = document.querySelector("table");
+const bookTable = document.getElementById("bookTable");
+
 
 
 
@@ -39,35 +40,12 @@ function addBookToLibrary(){
     document
     .getElementById("tableDiv")
     .innerHTML = genTable(myLibrary);
-     const titleHeader = document.getElementById("titleHeader");
-     titleHeader.addEventListener("click", () => {
-        myLibrary.sort((a, b) => {
-        const titleA = a.title.toUpperCase(); 
-        const titleB = b.title.toUpperCase(); 
-        if (titleA < titleB) {
-        return -1;
-    }
-        if (titleA > titleB) {
-        return 1;
-  }
-        return 0;
-});
-     document
-    .getElementById("tableDiv")
-    .innerHTML = genTable(myLibrary);
-});
-};
-const titleHeader = document.getElementById("titleHeader");
-    titleHeader.addEventListener("click", () => {
-    myLibrary.sort();
-    genTable(myLibrary);
-})
-    console.log(myLibrary);
-};
+     clickEvents();
+}};
 
 function genTable(myLibrary) {
     let bookTable = `
-        <table class = "bookTable">
+        <table id = "bookTable">
             <tr>
                 <th id = "titleHeader"> Title </th>
                 <th id = "authorHeader" > Author </th>
@@ -100,5 +78,51 @@ form.addEventListener("submit", (event) => {
 });
 
 
+sortArrayTitle = function () {
+     myLibrary.sort((a, b) => {
+        const titleA = a.title.toUpperCase(); 
+        const titleB = b.title.toUpperCase(); 
+        if (titleA < titleB) {
+        return -1;
+    }
+        if (titleA > titleB) {
+        return 1;
+  }
+        return 0;
+})}
 
+sortArrayAuthor = function () {
+     myLibrary.sort((a, b) => {
+        const authorA = a.author.toUpperCase(); 
+        const authorB = b.author.toUpperCase(); 
+        if (authorA < authorB) {
+        return -1;
+    }
+        if (authorA > authorB) {
+        return 1;
+  }
+        return 0;
+})}
+
+
+clickEvents = function(){
+    const authorHeader = document.getElementById("authorHeader");
+    const titleHeader = document.getElementById("titleHeader");
+
+     titleHeader.addEventListener("click", () => {
+
+        sortArrayTitle();
+        document
+        .getElementById("tableDiv")
+        .innerHTML = genTable(myLibrary);
+         clickEvents();
+})
+     authorHeader.addEventListener("click", () => {
+        sortArrayAuthor();
+        document
+        .getElementById("tableDiv")
+        .innerHTML = genTable(myLibrary);
+        clickEvents();
+     })
+}
 
