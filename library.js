@@ -104,10 +104,23 @@ sortArrayAuthor = function () {
         return 0;
 })}
 
+sortArrayPages = function () {
+     myLibrary.sort((a, b) => {
+        const pagesA = a.pages;
+        const pagesB = b.pages;
+        if (pagesA < pagesB) {
+        return -1;
+    }
+        if (pagesA > pagesB) {
+        return 1;
+  }
+        return 0;
+})}
 
 clickEvents = function(){
     const authorHeader = document.getElementById("authorHeader");
     const titleHeader = document.getElementById("titleHeader");
+    const pagesHeader = document.getElementById("pagesHeader");
 
      titleHeader.addEventListener("click", () => {
 
@@ -123,6 +136,14 @@ clickEvents = function(){
         .getElementById("tableDiv")
         .innerHTML = genTable(myLibrary);
         clickEvents();
-     })
-}
+})
+
+      pagesHeader.addEventListener("click", () => {
+        sortArrayPages();
+        document
+        .getElementById("tableDiv")
+        .innerHTML = genTable(myLibrary);
+        clickEvents();
+})
+};
 
