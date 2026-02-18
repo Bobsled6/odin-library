@@ -24,7 +24,8 @@ function Book() {
     this.title = bookTitle;
     this.pages = bookPages;
     this.read = bookRead;
-    this.id = crypto.randomUUID();
+    this["data-id"] = crypto.randomUUID();
+    
     
     // this.info = function() {
     //    return this.author + "'s " + this.title + ", " + this.pages + " pages, " + this.read
@@ -51,6 +52,7 @@ function genTable(myLibrary) {
                 <th id = "authorHeader" > Author </th>
                 <th id = "pagesHeader"> Pages </th>
                 <th id = "readHeader"> Read? </th>
+                <th id = "removeHeader">Remove </th>
             </tr>`;
     for (const book of myLibrary) {
         bookTable += `
@@ -58,7 +60,8 @@ function genTable(myLibrary) {
                 <td> ${book.title} </td>
                 <td> ${book.author} </td>
                 <td> ${book.pages} </td>
-                <td> ${book.read} </td>
+                <td> <input type = "checkbox"> </td>
+                <td> <button class = "removeButton" id = "${book["data-id"]}"> Delete </button> </td>
             </tr> `;
     }
     bookTable += "</table>";
@@ -121,6 +124,7 @@ clickEvents = function(){
     const authorHeader = document.getElementById("authorHeader");
     const titleHeader = document.getElementById("titleHeader");
     const pagesHeader = document.getElementById("pagesHeader");
+    const removeButton = document.querySelectorAll(`button.removeButton`);
 
      titleHeader.addEventListener("click", () => {
 
@@ -144,6 +148,20 @@ clickEvents = function(){
         .getElementById("tableDiv")
         .innerHTML = genTable(myLibrary);
         clickEvents();
+})
+     removeButton.forEach((btn) => {
+        
+        btn.addEventListener("click", () => {
+            console.log(btn.id)
+             let remove = myLibrary.findIndex(myLibrary => myLibrary["data-id"] === btn.id); 
+        if (remove !== -1) {
+            myLibrary.splice(remove, 1);
+        }
+        document
+        .getElementById("tableDiv")
+        .innerHTML = genTable(myLibrary);
+        clickEvents();
+})
 })
 };
 
