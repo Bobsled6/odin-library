@@ -60,7 +60,7 @@ function genTable(myLibrary) {
                 <td> ${book.title} </td>
                 <td> ${book.author} </td>
                 <td> ${book.pages} </td>
-                <td> <input type = "checkbox"> </td>
+                <td> <input  class = "readCheckbox" id = "${book["data-id"] + 1}" type = "checkbox"> </td>
                 <td> <button class = "removeButton" id = "${book["data-id"]}"> Delete </button> </td>
             </tr> `;
     }
@@ -125,6 +125,7 @@ clickEvents = function(){
     const titleHeader = document.getElementById("titleHeader");
     const pagesHeader = document.getElementById("pagesHeader");
     const removeButton = document.querySelectorAll(`button.removeButton`);
+    const readCheckbox = document.querySelectorAll('input.readCheckbox');
 
      titleHeader.addEventListener("click", () => {
 
@@ -152,7 +153,6 @@ clickEvents = function(){
      removeButton.forEach((btn) => {
         
         btn.addEventListener("click", () => {
-            console.log(btn.id)
              let remove = myLibrary.findIndex(myLibrary => myLibrary["data-id"] === btn.id); 
         if (remove !== -1) {
             myLibrary.splice(remove, 1);
@@ -163,5 +163,30 @@ clickEvents = function(){
         clickEvents();
 })
 })
+
+    readCheckbox.forEach ((cbx) => {
+        let checkBoxTest = myLibrary.findIndex(myLibrary => myLibrary["data-id"] + 1 === cbx.id);
+        if (checkBoxTest !== -1 && bookRead === "on") {
+        console.log(myLibrary[checkBoxTest].read);
+        }
+        
+           if (myLibrary[checkBoxTest].read === "on") {
+        cbx.checked = true;
+       }
+       else {
+        cbx.checked = false;
+       }
+
+       cbx.addEventListener ("change", () => {
+        if(myLibrary[checkBoxTest].read === "on") {
+            myLibrary[checkBoxTest].read = "null"
+        }
+        else {myLibrary[checkBoxTest].read = "on"}
+       })
+       
+ })
+      
 };
+
+
 
