@@ -166,11 +166,7 @@ clickEvents = function(){
 
     readCheckbox.forEach ((cbx) => {
         let checkBoxTest = myLibrary.findIndex(myLibrary => myLibrary["data-id"] + 1 === cbx.id);
-        if (checkBoxTest !== -1 && bookRead === "on") {
-        console.log(myLibrary[checkBoxTest].read);
-        }
-        
-           if (myLibrary[checkBoxTest].read === "on") {
+        if (myLibrary[checkBoxTest].read === "on") {
         cbx.checked = true;
        }
        else {
