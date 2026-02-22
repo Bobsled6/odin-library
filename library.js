@@ -56,13 +56,15 @@ function genTable(myLibrary) {
             </tr>`;
     for (const book of myLibrary) {
         bookTable += `
-            <tr>
+        <div class = "tableRowDiv">    
+        <tr>
                 <td> ${book.title} </td>
                 <td> ${book.author} </td>
                 <td> ${book.pages} </td>
                 <td> <input  class = "readCheckbox" id = "${book["data-id"] + 1}" type = "checkbox"> </td>
-                <td> <button class = "removeButton" id = "${book["data-id"]}"> Delete </button> </td>
-            </tr> `;
+                <td> <button class = "removeButton" id = "${book["data-id"]}"> X </button> </td>
+            </tr> 
+        </div>`;
     }
     bookTable += "</table>";
     return bookTable;

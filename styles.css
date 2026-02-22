@@ -1,3 +1,31 @@
+body, main {
+    height: 100dvh;
+    width: 100dvw;
+    padding: 0px;
+    margin: 0px;
+    background-color: rgb(152, 152, 152);
+    font-family: Roboto Arial, Helvetica, sans-serif;
+}
+
+
+h1 {
+    grid-area: 1 / 1 / 1 / 1;
+    align-self: end;
+    justify-self: center;
+    font-weight: bolder;
+    margin-bottom: 30px;
+}
+:modal {
+    background-color: black;
+    color: white;
+}
+
+input[type= text], input[type = number]{
+   border-radius: 7px;
+   border: none;
+   padding-left: 6px;
+}
+
 form {
     display: grid;
     gap: 25px;
@@ -8,14 +36,95 @@ form {
     gap: 5px;
 }
 
-table {
-    
+.checkPair {
+    display: flex;
+    justify-content: space-between;
 }
 
+input[type = checkbox] {
+    height: 15px;
+    width: 15px;
+}
+
+input[type = submit] {
+    margin-left: 15px;
+    justify-self: center;
+    margin-right: 15px;
+}
+
+
+.checkPair {
+    display: flex;
+    justify-content: space-between;
+}
+
+#tableDiv {
+    grid-area: 2 / 1 / 3 / 1;
+    min-height: 0;
+    height: 100%;
+    overflow: auto;
+}
+
+
+table {
+    justify-self: center;
+    border: 1px solid rgb(132, 132, 132);
+}
+
+.tableRowDiv {
+    overflow: auto;
+}
+
+
 th {
-    width: 80px;
+    width: 100px;
+    height: 40px;
+    position: sticky;
+    top: 0px;
+    z-index: 100;
+    background: rgb(0, 0, 0);
+    color: white;
 }
 
 td {
     text-align: center;
 }
+
+tr {
+    border: 1px solid white;
+    background-color: black;
+    color: white;
+}
+
+body {
+    display: grid;
+    grid-template-rows: 1fr 3fr 1fr;
+}
+
+#newBookButton {
+    grid-area: 3 / 1 / 4 / 1;
+    width: 200px;
+    height: 40px;
+    justify-self: center;
+    background-color: black;
+    color: white;
+    margin-top: 15px;
+    font-weight: bolder;
+    border-radius: 6px;
+}
+
+
+button.removeButton {
+    width: 24px;
+    height: 24px;
+    background-color: red;
+    border: 2px solid rgb(31, 31, 31);
+    font-weight: bolder;
+    border-radius: 12px;
+    text-align: center;
+    margin: 2px;
+    padding: 0px;
+}
+
+
+
