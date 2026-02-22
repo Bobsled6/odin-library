@@ -25,12 +25,6 @@ function Book() {
     this.pages = bookPages;
     this.read = bookRead;
     this["data-id"] = crypto.randomUUID();
-    
-    
-    // this.info = function() {
-    //    return this.author + "'s " + this.title + ", " + this.pages + " pages, " + this.read
-    // }
-
 }
 
 function addBookToLibrary(){
