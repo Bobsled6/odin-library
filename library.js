@@ -8,27 +8,18 @@ const readHeader = document.getElementById("readHeader");
 const bookTable = document.getElementById("bookTable");
 
 
-
-
-
-function Book() {
-    if (!new.target) {
-        throw error("You must use the new operator to call the constructor")
+class Book {
+    constructor(bookData) {
+        this.author = bookData.get("author");
+        this.title = bookData.get("title");
+        this.pages = bookData.get("pages");
+        this.bookRead = bookData.get("read");
+        this["data-id"] = crypto.randomUUID();
     }
-    let bookData = new FormData(bookForm);
-    bookAuthor = bookData.get("author");
-    bookTitle = bookData.get("title");
-    bookPages = bookData.get("pages");
-    bookRead = bookData.get("read");
-    this.author = bookAuthor;
-    this.title = bookTitle;
-    this.pages = bookPages;
-    this.read = bookRead;
-    this["data-id"] = crypto.randomUUID();
 }
 
 function addBookToLibrary(){
-    let libraryBook = new Book();
+    let libraryBook = new Book(new FormData(bookForm));
     myLibrary.push(libraryBook);
     for (let i = 0; i < myLibrary.length; i++)
 {
