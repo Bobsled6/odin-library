@@ -8,26 +8,33 @@ const readHeader = document.getElementById("readHeader");
 const bookTable = document.getElementById("bookTable");
 
 
+
+
+
+
+
 class Book {
+    
     constructor(bookData) {
+        this.bookData = new FormData(bookForm);
         this.author = bookData.get("author");
         this.title = bookData.get("title");
         this.pages = bookData.get("pages");
-        this.bookRead = bookData.get("read");
+        this.read = bookData.get("read");
         this["data-id"] = crypto.randomUUID();
     }
-}
 
-function addBookToLibrary(){
-    let libraryBook = new Book(new FormData(bookForm));
-    myLibrary.push(libraryBook);
-    for (let i = 0; i < myLibrary.length; i++)
-{
-    document
-    .getElementById("tableDiv")
-    .innerHTML = genTable(myLibrary);
-     clickEvents();
-}};
+    addBookToLibrary(){
+        let libraryBook = this;
+        myLibrary.push(libraryBook);
+        console.log(myLibrary);
+        for (let i = 0; i < myLibrary.length; i++){   
+            document
+            .getElementById("tableDiv")
+            .innerHTML = genTable(myLibrary);
+            clickEvents();
+        }};
+}
 
 function genTable(myLibrary) {
     let bookTable = `
@@ -62,7 +69,7 @@ newBookButton.addEventListener("click", () => {
 
 form.addEventListener("submit", (event) => {
     event.preventDefault();
-    addBookToLibrary();
+    new Book(new FormData(bookForm)).addBookToLibrary();
     dialog.close();
     bookForm.reset();
 });
