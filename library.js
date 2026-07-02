@@ -29,7 +29,7 @@ class Book {
             document
             .getElementById("tableDiv")
             .innerHTML = new Table(myLibrary).genTable();
-            clickEvents();
+            Table.clickEvents();
         } console.log(myLibrary)};
 }
 
@@ -110,6 +110,69 @@ class Table {
         })
     }
 
+    static clickEvents(){
+        const authorHeader = document.getElementById("authorHeader");
+        const titleHeader = document.getElementById("titleHeader");
+        const pagesHeader = document.getElementById("pagesHeader");
+        const removeButton = document.querySelectorAll(`button.removeButton`);
+        const readCheckbox = document.querySelectorAll('input.readCheckbox');
+
+        titleHeader.addEventListener("click", () => {
+            Table.sortArrayTitle();
+            document
+            .getElementById("tableDiv")
+            .innerHTML = new Table(myLibrary).genTable();
+            Table.clickEvents();
+        })
+        authorHeader.addEventListener("click", () => {
+            Table.sortArrayAuthor();
+            document
+            .getElementById("tableDiv")
+            .innerHTML = new Table(myLibrary).genTable();
+            Table.clickEvents();
+        })
+
+        pagesHeader.addEventListener("click", () => {
+            Table.sortArrayPages();
+            console.log(myLibrary)
+            document
+            .getElementById("tableDiv")
+            .innerHTML = new Table(myLibrary).genTable();
+            Table.clickEvents();
+        })
+     
+        removeButton.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                let remove = myLibrary.findIndex(myLibrary => myLibrary["data-id"] === btn.id); 
+                if (remove !== -1) {
+                    myLibrary.splice(remove, 1);
+                }
+                document
+                .getElementById("tableDiv")
+                .innerHTML = new Table(myLibrary).genTable();
+                Table.clickEvents();
+        })
+    })
+
+        readCheckbox.forEach ((cbx) => {
+            let checkBoxTest = myLibrary.findIndex(myLibrary => myLibrary["data-id"] + 1 === cbx.id);
+            if (myLibrary[checkBoxTest].read === "on") {
+                cbx.checked = true;
+            }
+            else {
+                cbx.checked = false;
+            }
+            cbx.addEventListener ("change", () => {
+                if(myLibrary[checkBoxTest].read === "on") {
+                    myLibrary[checkBoxTest].read = "null"
+                }
+                else {
+                    myLibrary[checkBoxTest].read = "on"
+                }
+            })
+        })
+      
+    };
 }
 
 
@@ -125,67 +188,7 @@ form.addEventListener("submit", (event) => {
 });
 
 
-clickEvents = function(){
-    const authorHeader = document.getElementById("authorHeader");
-    const titleHeader = document.getElementById("titleHeader");
-    const pagesHeader = document.getElementById("pagesHeader");
-    const removeButton = document.querySelectorAll(`button.removeButton`);
-    const readCheckbox = document.querySelectorAll('input.readCheckbox');
 
-     titleHeader.addEventListener("click", () => {
-        Table.sortArrayTitle();
-        document
-        .getElementById("tableDiv")
-        .innerHTML = new Table(myLibrary).genTable();
-        clickEvents();
-})
-     authorHeader.addEventListener("click", () => {
-        Table.sortArrayAuthor();
-        document
-        .getElementById("tableDiv")
-        .innerHTML = new Table(myLibrary).genTable();
-        clickEvents();
-})
-
-      pagesHeader.addEventListener("click", () => {
-        Table.sortArrayPages();
-        console.log(myLibrary)
-        document
-        .getElementById("tableDiv")
-        .innerHTML = new Table(myLibrary).genTable();
-        clickEvents();
-})
-     removeButton.forEach((btn) => {
-        
-        btn.addEventListener("click", () => {
-            let remove = myLibrary.findIndex(myLibrary => myLibrary["data-id"] === btn.id); 
-            if (remove !== -1) {
-                myLibrary.splice(remove, 1);
-            }
-            document
-            .getElementById("tableDiv")
-            .innerHTML = new Table(myLibrary).genTable();
-            clickEvents();
-        })
-    })
-
-    readCheckbox.forEach ((cbx) => {
-        let checkBoxTest = myLibrary.findIndex(myLibrary => myLibrary["data-id"] + 1 === cbx.id);
-        if (myLibrary[checkBoxTest].read === "on") {
-            cbx.checked = true;
-        }
-        else {
-            cbx.checked = false;
-        }
-        cbx.addEventListener ("change", () => {
-            if(myLibrary[checkBoxTest].read === "on") {
-                myLibrary[checkBoxTest].read = "null"
-            }
-            else {myLibrary[checkBoxTest].read = "on"}
-        })
-    })
-      
-};
 
 
 
