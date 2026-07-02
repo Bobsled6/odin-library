@@ -67,6 +67,49 @@ class Table {
         bookTable += "</table>";
         return bookTable;
     }
+
+    static sortArrayTitle() {
+        myLibrary.sort((a, b) => {
+            const titleA = a.title.toUpperCase(); 
+            const titleB = b.title.toUpperCase(); 
+            if (titleA < titleB) {
+                return -1;
+            }
+            if (titleA > titleB) {
+                return 1;
+            }
+            return 0;
+            })
+        }
+    
+    static sortArrayAuthor() {
+        myLibrary.sort((a, b) => {
+            const authorA = a.author.toUpperCase(); 
+            const authorB = b.author.toUpperCase(); 
+            if (authorA < authorB) {
+                return -1;
+            }
+            if (authorA > authorB) {
+                return 1;
+            }
+            return 0;
+            })
+        }
+
+    static sortArrayPages = function () {
+        myLibrary.sort((a, b) => {
+            const pagesA = Number(a.pages);
+            const pagesB = Number(b.pages);
+            if (pagesA < pagesB) {
+                return -1;
+            }
+            if (pagesA > pagesB) {
+                return 1;
+            }
+            return 0;
+        })
+    }
+
 }
 
 
@@ -82,48 +125,6 @@ form.addEventListener("submit", (event) => {
 });
 
 
-
-sortArrayTitle = function () {
-     myLibrary.sort((a, b) => {
-        const titleA = a.title.toUpperCase(); 
-        const titleB = b.title.toUpperCase(); 
-        if (titleA < titleB) {
-        return -1;
-    }
-        if (titleA > titleB) {
-        return 1;
-  }
-        return 0;
-})}
-
-sortArrayAuthor = function () {
-     myLibrary.sort((a, b) => {
-        const authorA = a.author.toUpperCase(); 
-        const authorB = b.author.toUpperCase(); 
-        if (authorA < authorB) {
-        return -1;
-    }
-        if (authorA > authorB) {
-        return 1;
-  }
-        return 0;
-})}
-
-sortArrayPages = function () {
-     myLibrary.sort((a, b) => {
-        const pagesA = Number(a.pages);
-        const pagesB = Number(b.pages);
-        if (pagesA < pagesB) {
-            return -1;
-        }
-        if (pagesA > pagesB) {
-            return 1;
-        }
-        return 0;
-    })
-    console.log(myLibrary)
-}
-
 clickEvents = function(){
     const authorHeader = document.getElementById("authorHeader");
     const titleHeader = document.getElementById("titleHeader");
@@ -132,14 +133,14 @@ clickEvents = function(){
     const readCheckbox = document.querySelectorAll('input.readCheckbox');
 
      titleHeader.addEventListener("click", () => {
-        sortArrayTitle();
+        Table.sortArrayTitle();
         document
         .getElementById("tableDiv")
         .innerHTML = new Table(myLibrary).genTable();
         clickEvents();
 })
      authorHeader.addEventListener("click", () => {
-        sortArrayAuthor();
+        Table.sortArrayAuthor();
         document
         .getElementById("tableDiv")
         .innerHTML = new Table(myLibrary).genTable();
@@ -147,7 +148,7 @@ clickEvents = function(){
 })
 
       pagesHeader.addEventListener("click", () => {
-        sortArrayPages();
+        Table.sortArrayPages();
         console.log(myLibrary)
         document
         .getElementById("tableDiv")
