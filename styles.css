@@ -126,5 +126,12 @@ button.removeButton {
     padding: 0px;
 }
 
+input:invalid {
+  border-color: #990000;
+  background-color: #ffdddd;
+}
 
+input:focus:invalid {
+    border: none;
+}
 

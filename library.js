@@ -6,6 +6,14 @@ const authorHeader = document.getElementById("authorHeader");
 const pagesHeader = document.getElementById("pagesHeader");
 const readHeader = document.getElementById("readHeader");
 const bookTable = document.getElementById("bookTable");
+const title = document.getElementById("title");
+const titleError = document.querySelector("#title + span.error");
+const author = document.getElementById("author");
+const authorError = document.querySelector("#author + span.error");
+const pages = document.getElementById("pages");
+const pagesError = document.querySelector("#pages + span.error");
+
+
 
 
 
@@ -182,11 +190,21 @@ newBookButton.addEventListener("click", () => {
 
 form.addEventListener("submit", (event) => {
     event.preventDefault();
-    new Book(new FormData(bookForm)).addBookToLibrary();
-    dialog.close();
-    bookForm.reset();
-});
+    if(document.querySelectorAll(":invalid").length != 0) {
 
+        if(document.querySelectorAll(":invalid").length == 2) {
+            alert(`Please fill out the ${document.querySelectorAll(":invalid")[1].id} field.`)
+        }
+        else if(document.querySelectorAll(":invalid").length > 2) {
+            alert("Please fill out all fields.")
+        }
+    }
+    else {
+        new Book(new FormData(bookForm)).addBookToLibrary();
+        dialog.close();
+        bookForm.reset();
+    }
+});
 
 
 
