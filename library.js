@@ -38,7 +38,7 @@ class Book {
             .getElementById("tableDiv")
             .innerHTML = new Table(myLibrary).genTable();
             Table.clickEvents();
-        } console.log(myLibrary)};
+        }};
 }
 
 

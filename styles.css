@@ -131,7 +131,7 @@ input:invalid {
   background-color: #ffdddd;
 }
 
+
 input:focus:invalid {
     border: none;
 }
-
